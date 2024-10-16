@@ -21,11 +21,11 @@ fi
 
 # Run clean and compile in parallel
 echo "Cleaning and Installing Graphhopper"
-mvn -T 4C --projects core,web-bundle,map-matching,web-api -P include-client-hc -am -DskipTests=true compile package install
+mvn -T 4C --projects web,core,web-bundle,map-matching,web-api -P include-client-hc -am -DskipTests=true compile package install
 
 # Deploy files in bulk
 echo "Deploying Graphhopper JARs"
-for module in core web-bundle web-api map-matching; do
+for module in web core web-bundle web-api map-matching; do
   mvn deploy:deploy-file -Durl=file://"$MAVEN_REPO" -Dfile=$module/target/graphhopper-$module-$GH_VERSION.jar \
     -DgroupId=com.graphhopper -DartifactId=graphhopper-$module -Dpackaging=jar -Dversion=$GH_VERSION
 done
