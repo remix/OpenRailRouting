@@ -5,27 +5,32 @@
 set -euo pipefail
 
 BASEDIR=$(pwd)
-
-# Get GraphHopper version string
-cd graphhopper
-echo "Get GraphHopper version string"
-GH_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-cd "$BASEDIR"
-
-BASEDIR=$(pwd)
-echo "Puring maven_repository"
 MAVEN_REPO="$BASEDIR/maven_repository"
+
+echo "Puring maven_repository"
 rm -rf "$MAVEN_REPO"/*
-cd graphhopper
-echo "Cleaning"
-mvn clean
-echo "Installing"
-mvn --projects core,web-bundle,map-matching,web-api -P include-client-hc -am -DskipTests=true compile package install
-echo "Deploying"
-mvn deploy:deploy-file -Durl=file://"$MAVEN_REPO" -Dfile=core/target/graphhopper-core-$GH_VERSION.jar -DgroupId=com.graphhopper -DartifactId=graphhopper-core -Dpackaging=jar -Dversion=$GH_VERSION
-mvn deploy:deploy-file -Durl=file://"$MAVEN_REPO" -Dfile=web-bundle/target/graphhopper-web-bundle-$GH_VERSION.jar -DgroupId=com.graphhopper -DartifactId=graphhopper-web-bundle -Dpackaging=jar -Dversion=$GH_VERSION
-mvn deploy:deploy-file -Durl=file://"$MAVEN_REPO" -Dfile=web-api/target/graphhopper-web-api-$GH_VERSION.jar -DgroupId=com.graphhopper -DartifactId=graphhopper-web-api -Dpackaging=jar -Dversion=$GH_VERSION
-mvn deploy:deploy-file -Durl=file://"$MAVEN_REPO" -Dfile=map-matching/target/graphhopper-map-matching-$GH_VERSION.jar -DgroupId=com.graphhopper -DartifactId=graphhopper-map-matching -Dpackaging=jar -Dversion=$GH_VERSION
+
+# Clone repositories if needed or skip based on changes
+if [ -d "graphhopper" ]; then
+  cd graphhopper
+else
+  echo "Cloning graphhopper repo"
+  git clone https://github.com/graphhopper/graphhopper.git
+  cd graphhopper
+fi
+
+# Run clean and compile in parallel
+echo "Cleaning and Installing Graphhopper"
+mvn -T 4C --projects core,web-bundle,map-matching,web-api -P include-client-hc -am -DskipTests=true compile package install
+
+# Deploy files in bulk
+echo "Deploying Graphhopper JARs"
+for module in core web-bundle web-api map-matching; do
+  mvn deploy:deploy-file -Durl=file://"$MAVEN_REPO" -Dfile=$module/target/graphhopper-$module-$GH_VERSION.jar \
+    -DgroupId=com.graphhopper -DartifactId=graphhopper-$module -Dpackaging=jar -Dversion=$GH_VERSION
+done
+
 cd $BASEDIR
+
 echo "Building OpenRailRouting"
-MAVEN_OPTS=-Xss20m mvn clean compile install -U -f pom-local-repository.xml
+MAVEN_OPTS="-Xms512m -Xmx2G -XX:+UseG1GC -Xss20m" mvn clean compile install -U -f pom-local-repository.xml
