@@ -27,6 +27,11 @@
       <artifactId>graphhopper-map-matching</artifactId>
       <version>${graphhopper.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.graphhopper</groupId>
+      <artifactId>graphhopper-web-api</artifactId>
+      <version>${graphhopper.version}</version>
+    </dependency>
     <!-- CSV input in /match API call -->
     <dependency>
       <groupId>com.opencsv</groupId>
