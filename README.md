@@ -31,10 +31,6 @@ Missing features:
 * a lot of features which would need data which is not in OSM (incline, structure gauges)
 * support for barriers (e.g. gates)
 
-## Web Frontend
-
-This project includes a web frontend which is a fork of the original GraphHopper web frontend.
-
 ## Building
 
 This project uses Maven (for the Java code) and NodeJS for the web frontend for building.
