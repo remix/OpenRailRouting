@@ -1,5 +1,6 @@
 # data
 graph-cache/
+data/
 
 # web frontend
 **/node_modules
@@ -154,3 +155,18 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 
 # End of https://www.gitignore.io/api/java,macos,maven,intellij
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
+
+# jdtls
+.classpath
+.factorypath
+.project
+.settings/

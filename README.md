@@ -35,6 +35,10 @@ Missing features:
 
 This project includes a web frontend which is a fork of the original GraphHopper web frontend.
 
+## Development environment
+
+We're using nix with [direnv](https://direnv.net/) and [devenv](https://devenv.sh/) to manage our development environment.
+
 ## Building
 
 This project uses Maven (for the Java code) and NodeJS for the web frontend for building.
