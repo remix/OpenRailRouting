@@ -13,7 +13,6 @@ import com.graphhopper.application.resources.RootResource;
 import com.graphhopper.http.CORSFilter;
 
 import io.dropwizard.Application;
-import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
@@ -28,8 +27,8 @@ public final class RailwayRoutingApplication extends Application<RailwayRoutingS
         bootstrap.addBundle(new RailwayRoutingBundle());
         bootstrap.addCommand(new RailwayImportCommand());
         bootstrap.addCommand(new RailwayMatchCommand());
-        bootstrap.addBundle(new AssetsBundle("/map-matching-frontend/", "/map-matching/", "index.html", "map-matching-frontend"));
-        bootstrap.addBundle(new AssetsBundle("/de/geofabrik/openrailrouting/maps/", "/maps/", "index.html", "openrailrouting-frontend"));
+        //bootstrap.addBundle(new AssetsBundle("/map-matching-frontend/", "/map-matching/", "index.html", "map-matching-frontend"));
+        //bootstrap.addBundle(new AssetsBundle("/de/geofabrik/openrailrouting/maps/", "/maps/", "index.html", "openrailrouting-frontend"));
     }
 
     @Override
