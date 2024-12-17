@@ -8,7 +8,7 @@
 {
   "distance_influence": 0,
   "priority": [
-    { "if": "rail_access == CONSTRUCTION || rail_access == TRAM || rail_access == RAIL || rail_access == LIGHT_RAIL || rail_access == SUBWAY || rail_access == PROPOSED || rail_access == FUNICULAR || rail_access == MONORAIL", "multiply_by": "0" }
+    { "if": "rail_access == RAIL", "multiply_by": 1 }
   ],
   "speed": [
     { "if": "true", "limit_to": "rail_average_speed" }
