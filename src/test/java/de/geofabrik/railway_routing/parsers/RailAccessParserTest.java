@@ -55,4 +55,13 @@ public class RailAccessParserTest {
         way.setTag("railway", "rail");
         assertEquals(WayAccess.WAY, e.getAccess(way));
     }
+
+    @Test
+    public void testRejectsNarrowGauge() {
+        PMap properties = new PMap();
+        RailAccessParser e = createAccessParser(createEncodingManager(), properties);
+        ReaderWay way = new ReaderWay(1);
+        way.setTag("railway", "narrow_gauge");
+        assertEquals(WayAccess.CAN_SKIP, e.getAccess(way));
+    }
 }
