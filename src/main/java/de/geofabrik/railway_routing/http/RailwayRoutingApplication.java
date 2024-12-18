@@ -13,7 +13,6 @@ import com.graphhopper.application.resources.RootResource;
 import com.graphhopper.http.CORSFilter;
 
 import io.dropwizard.Application;
-import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 

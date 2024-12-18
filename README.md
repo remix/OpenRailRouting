@@ -1,3 +1,5 @@
+# DISCLAIMER: This is a fork of the original OpenRailRouting project. Some modifications have been made to tailor it to our specific use case. The original project can be found at https://github.com/geofabrik/OpenRailRouting.
+
 # OpenStreetMap based routing on railway tracks
 
 This is a prototype of a routing engine for railways based on a forked version of the
