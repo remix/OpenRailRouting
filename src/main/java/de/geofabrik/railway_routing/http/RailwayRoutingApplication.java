@@ -27,8 +27,6 @@ public final class RailwayRoutingApplication extends Application<RailwayRoutingS
         bootstrap.addBundle(new RailwayRoutingBundle());
         bootstrap.addCommand(new RailwayImportCommand());
         bootstrap.addCommand(new RailwayMatchCommand());
-        //bootstrap.addBundle(new AssetsBundle("/map-matching-frontend/", "/map-matching/", "index.html", "map-matching-frontend"));
-        //bootstrap.addBundle(new AssetsBundle("/de/geofabrik/openrailrouting/maps/", "/maps/", "index.html", "openrailrouting-frontend"));
     }
 
     @Override
