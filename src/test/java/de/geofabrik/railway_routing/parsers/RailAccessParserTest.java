@@ -46,6 +46,15 @@ public class RailAccessParserTest {
     }
 
     @Test
+    public void testAcceptsConstruction() {
+        PMap properties = new PMap();
+        RailAccessParser e = createAccessParser(createEncodingManager(), properties);
+        ReaderWay way = new ReaderWay(1);
+        way.setTag("railway", "construction");
+        assertEquals(e.getAccess(way), WayAccess.WAY);
+    }
+
+    @Test
     public void testRejectRoad() {
         PMap properties = new PMap();
         RailAccessParser e = createAccessParser(createEncodingManager(), properties);

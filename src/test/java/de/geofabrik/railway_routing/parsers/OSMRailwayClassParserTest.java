@@ -70,6 +70,12 @@ class OSMRailwayClassParserTest {
         way.setTag("railway", "rail;tram");
         parser.handleWayTags(edgeId, edgeIntAccess, way, relFlags);
         assertEquals(RailwayClass.OTHER, classEnc.getEnum(false, edgeId, edgeIntAccess));
+
+        edgeIntAccess = new ArrayEdgeIntAccess(1);
+        way = new ReaderWay(29L);
+        way.setTag("railway", "construction");
+        parser.handleWayTags(edgeId, edgeIntAccess, way, relFlags);
+        assertEquals(RailwayClass.CONSTRUCTION, classEnc.getEnum(false, edgeId, edgeIntAccess));
     }
 
 }

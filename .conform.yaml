@@ -9,8 +9,6 @@ policies:
           body:
               required: true
           dco: false
-          gpg:
-              required: true
           spellcheck:
               locale: US
           maximumOfOneCommit: false
