@@ -7,7 +7,7 @@ import com.graphhopper.util.Helper;
  * This enum defines the railway class of an edge. It maps the railway=* key of OSM to an enum. All edges that do not fit get OTHER as value.
  */
 public enum RailwayClass {
-    OTHER, RAIL, SUBWAY, TRAM, NARROW_GAUGE, LIGHT_RAIL, FUNICULAR;
+    OTHER, RAIL, SUBWAY, TRAM, NARROW_GAUGE, LIGHT_RAIL, FUNICULAR, CONSTRUCTION;
 
     public static final String KEY = "railway_class";
 
