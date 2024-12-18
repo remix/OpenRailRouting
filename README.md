@@ -29,14 +29,9 @@ Missing features:
 * a lot of features which would need data which is not in OSM (incline, structure gauges)
 * support for barriers (e.g. gates)
 
-## Web Frontend
-
-This project includes a web frontend which is a fork of the original GraphHopper web frontend.
-
 ## Building
 
-This project uses Maven (for the Java code) and NodeJS for the web frontend for building.
-`npm` has to be installed.
+This project uses Maven (for the Java code) for building.
 
 ```sh
 git submodule init
@@ -114,7 +109,7 @@ java -Xmx2500m -Xms50m \
 The tool currently supports three different actions (`ACTION` above):
 
 * `import` to import the graph (graph will be stored at the subdirectory `graph-cache/`)
-* `serve` to listen to HTTP requests for the API and the web interface on the port specified in a YAML configuration file (see
+* `serve` to listen to HTTP requests for the API on the port specified in a YAML configuration file (see
   `config.yml` as an example). If no data has been imported, an import of the routing graph will happen first.
 * `match` do map matching. This command needs additional arguments called `OPTARG` above.
 
