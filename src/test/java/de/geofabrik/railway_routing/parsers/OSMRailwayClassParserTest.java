@@ -57,7 +57,7 @@ class OSMRailwayClassParserTest {
         way = new ReaderWay(29L);
         way.setTag("railway", "narrow_gauge");
         parser.handleWayTags(edgeId, edgeIntAccess, way, relFlags);
-        assertEquals(RailwayClass.NARROW_GAUGE, classEnc.getEnum(false, edgeId, edgeIntAccess));
+        assertEquals(RailwayClass.OTHER, classEnc.getEnum(false, edgeId, edgeIntAccess));
 
         edgeIntAccess = new ArrayEdgeIntAccess(1);
         way = new ReaderWay(29L);
@@ -76,6 +76,18 @@ class OSMRailwayClassParserTest {
         way.setTag("railway", "construction");
         parser.handleWayTags(edgeId, edgeIntAccess, way, relFlags);
         assertEquals(RailwayClass.CONSTRUCTION, classEnc.getEnum(false, edgeId, edgeIntAccess));
+
+        edgeIntAccess = new ArrayEdgeIntAccess(1);
+        way = new ReaderWay(29L);
+        way.setTag("railway", "proposed");
+        parser.handleWayTags(edgeId, edgeIntAccess, way, relFlags);
+        assertEquals(RailwayClass.PROPOSED, classEnc.getEnum(false, edgeId, edgeIntAccess));
+
+        edgeIntAccess = new ArrayEdgeIntAccess(1);
+        way = new ReaderWay(29L);
+        way.setTag("railway", "monorail");
+        parser.handleWayTags(edgeId, edgeIntAccess, way, relFlags);
+        assertEquals(RailwayClass.MONORAIL, classEnc.getEnum(false, edgeId, edgeIntAccess));
     }
 
 }
