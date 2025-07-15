@@ -66,11 +66,29 @@ public class RailAccessParserTest {
     }
 
     @Test
-    public void testRejectsNarrowGauge() {
+    public void testAcceptsNarrowGauge() {
         PMap properties = new PMap();
         RailAccessParser e = createAccessParser(createEncodingManager(), properties);
         ReaderWay way = new ReaderWay(1);
         way.setTag("railway", "narrow_gauge");
+        assertEquals(e.getAccess(way), WayAccess.WAY);
+    }
+
+    @Test
+    public void testAcceptsMiniature() {
+        PMap properties = new PMap();
+        RailAccessParser e = createAccessParser(createEncodingManager(), properties);
+        ReaderWay way = new ReaderWay(1);
+        way.setTag("railway", "miniature");
+        assertEquals(e.getAccess(way), WayAccess.WAY);
+    }
+
+    @Test
+    public void testRejectsAbandoned() {
+        PMap properties = new PMap();
+        RailAccessParser e = createAccessParser(createEncodingManager(), properties);
+        ReaderWay way = new ReaderWay(1);
+        way.setTag("railway", "abandoned");
         assertEquals(WayAccess.CAN_SKIP, e.getAccess(way));
     }
 }
