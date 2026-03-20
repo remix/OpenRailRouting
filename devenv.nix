@@ -1,6 +1,8 @@
-{ pkgs, lib, config, inputs, ... }:
+{ pkgs, ... }:
 
 {
+  devenv.warnOnNewVersion = false;
+
   languages.java.enable = true;
   languages.java.maven.enable = true;
   languages.javascript.enable = true;
@@ -11,7 +13,5 @@
     osmctools
   ];
 
-  pre-commit.hooks = {
-    conform.enable = true;
-  };
+  git-hooks.hooks.conform.enable = true;
 }
